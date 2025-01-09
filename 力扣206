@@ -1,0 +1,36 @@
+力扣第206题，反转链表：
+错误做法：
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* pre=nullptr;
+        ListNode* now=head;
+        ListNode* tep=now->next;//错误1
+        while(now!=nullptr){
+            now->next=pre;
+            pre=now;
+            now=tep;
+            tep=tep->next;//错误2
+        }
+        return pre;
+    }
+};
+正确做法：
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* pre=nullptr;
+        ListNode* now=head;
+        ListNode* tep;
+        if(now !=nullptr)
+        tep=now->next;
+        while(now!=nullptr){
+            tep=now->next;
+            now->next=pre;
+            pre=now;
+            now=tep;
+        }
+        return pre;
+    }
+};
+错误原因：错误1和错误2都没有考虑now和tep是否为nullptr的情况，这样无法使用next；
