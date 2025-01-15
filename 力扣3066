@@ -1,0 +1,32 @@
+冒泡排序逻辑出错：
+错误代码：
+ for(int i=0;i<size-1;i++)
+    {
+       bool a=false;
+       for(int j=i+1;j<size-i;j++){
+         if(mynums[j-1]>mynums[j]){
+            long long tem=mynums[j-1];
+            mynums[j-1]=mynums[j];
+            mynums[j]=tem;
+            a=true;
+         }
+       }
+       if(a==false)
+       break;
+    }
+正确代码：
+ for(int i=0;i<size-1;i++)
+    {
+       bool a=false;
+       for(int j=1;j<size-i;j++){
+         if(mynums[j-1]>mynums[j]){
+            long long tem=mynums[j-1];
+            mynums[j-1]=mynums[j];
+            mynums[j]=tem;
+            a=true;
+         }
+       }
+       if(a==false)
+       break;
+    }
+错误原因：由于是把大的向后冒。所以每次可以确定一个最大的在后面，所以每次都需要从开头开始便利。
